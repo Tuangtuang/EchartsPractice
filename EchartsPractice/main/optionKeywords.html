@@ -1,0 +1,263 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src='https://cdn.bootcss.com/echarts/3.7.2/echarts.simple.js'></script>
+        <script src='../dist/echarts-wordcloud.js'></script>
+    </head>
+    <body>
+        <style>
+            html, body, #main {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+        <style type="text/css">
+            a{
+                text-decoration: none;
+            a:link{
+                color: blueviolet;
+            }
+            a:hover{
+                color: yellow;
+            }
+            a:visited{
+                color: black;
+            }
+            a:active{
+                color: whitesmoke;
+            }
+            }
+        </style>
+        <h1 align="center" style="color: #F6608A;font-size: 60px">当当网计算机分类图书关键字词频</h1>
+        <table align="center" valign="middle">
+            <tr>
+                <td width="250"><a href="http://www.dangdang.com/" target="_blank" style="font-size: 30px">当当首页</a></td>
+                <td width="250"><a href="chubanshe.html" style="font-size: 30px">出版社词频</a></td>
+                <td width="250"><a href="index.html" style="font-size: 30px">返回主页</a></td>
+
+            </tr>
+        </table>
+        <div id='main'></div>
+
+        <script>
+            var chart = echarts.init(document.getElementById('main'));
+
+            var keywords = {
+                "PowerPoint":184,
+                "计算机组装与维护":46,
+                "普通高等教育“十二五”规划教材":115,
+                "Microsoft":170,
+                "CoreIDRAW":54,
+                "数据库原理与应用":32,
+                "Audition":31,
+                "Google":45,
+                "计算机与互联网":37,
+                "中文版Office":48,
+                "中文版SolidWorks":34,
+                "Effective":56,
+                "Pro/ENGINEER":476,
+                "中文版AutoCAD":466,
+                "计算机应用）":38,
+                "LabVIEW":33,
+                "Windows":1050,
+                "Photoshop":2273,
+                "中文Flash":47,
+                "畅销书籍QHDX":45,
+                "Office":790,
+                "Project":45,
+                "全国计算机等级考试":35,
+                "畅销书籍HXGY":33,
+                "Basic程序设计教程":36,
+                "Objective":51,
+                "Authorware":84,
+                "Access":281,
+                "程序设计教程":43,
+                "自动控制原理":51,
+                "Pro/Engineer":54,
+                "Android":197,
+                "0中文版从入门到精通":46,
+                "Basic6":34,
+                "VISUAL":49,
+                "MATLAB":131,
+                "Java程序设计":35,
+                "Hibernate":51,
+                "Lightscape":43,
+                "中文版Illustrator":69,
+                "2016从入门到精通":34,
+                "dangdang":33,
+                "中文版InDesign":40,
+                "Workbench":63,
+                "中文版Dreamweaver":145,
+                "全国计算机等级考试考点分析":49,
+                "信息安全技术":40,
+                "中文版Photoshop":567,
+                "InDesign":76,
+                "二级Visual":164,
+                "Enterprise":65,
+                "Verilog":36,
+                "//product":38,
+                "Parametric":65,
+                "jQuery":77,
+                "Photoshop7":34,
+                "CorelDRAW":364,
+                "Spring":93,
+                "清华电脑学堂":53,
+                "语言程序设计":47,
+                "Wildfire3":46,
+                "iPhone":31,
+                "数据库原理及应用":46,
+                "Wildfire":418,
+                "Basic程序设计":40,
+                "知礼图书专营店":56,
+                "0从入门到精通":37,
+                "面向对象程序设计":32,
+                "21世纪高等院校规划教材":70,
+                "中老年人学电脑":33,
+                "Effects":399,
+                "978711":31,
+                "Cimatron":53,
+                "Illustrator":288,
+                "中文Photoshop":44,
+                "Word/Excel/PPT":91,
+                "NET程序设计":31,
+                "Inventor":91,
+                "Cortex":101,
+                "21世纪高职高专规划教材":41,
+                "AutoCAD":1675,
+                "中文版After":33,
+                "Cocos2d":71,
+                "C语言程序设计教程":38,
+                "Dreamweaver":744,
+                "Mastercam":166,
+                "北京兆迪科技有限公司著":45,
+                "Word/Excel":48,
+                "Oracle":315,
+                "中文版Premiere":47,
+                "ROM一张）":59,
+                "程序设计基础":38,
+                "中文版Excel":47,
+                "Solidworks":51,
+                "photoshop":72,
+                "SketchUp":66,
+                "Autodesk":206,
+                "SOLIDWORKS":44,
+                "办公软件应用":31,
+                "Pro/ENGINEER中文野火版5":48,
+                "正版书籍06":83,
+                "中文版3ds":246,
+                "普通高等教育“十一五”国家级规划教材":90,
+                "从新手到高手":63,
+                "PHOTOSHOP":91,
+                "MasterCAM":50,
+                "中文版CorelDRAW":113,
+                "C语言程序设计":103,
+                "Protel":154,
+                "Fireworks":98,
+                "中文版Windows":37,
+                "工业和信息化普通高等教育“十二五”规划教材立项项目":72,
+                "JavaScript":105,
+                "Visual":2461,
+                "单片机原理及应用":32,
+                "Struts":65,
+                "从入门到精通":124,
+                "中文版从入门到精通":34,
+                "Designer":59,
+                "Studio":108,
+                "Primer":31,
+                "FoxPro6":33,
+                "计算机应用基础":58,
+                "北京兆迪科技有限公司":56,
+                "Database":71,
+                "Word/Excel/PowerPoint":41,
+                "2013从入门到精通":35,
+                "CAD/CAM/CAE技术联盟":37,
+                "三级网络技术":36,
+                "Altium":63,
+                "FoxPro":316,
+                "WINDOWS":34,
+                "SolidWorks":370,
+                "Max/VRay印象":33,
+                "Server":975,
+                "龙马高新教育":73,
+                "Premiere":248,
+                "Python":73,
+                "PowerBuilder":41,
+                "21世纪高等学校规划教材":63,
+                "Painter":42,
+                "Professional":45,
+                "中文版Flash":173,
+                "Foxpro":31,
+                "Delphi":91,
+                "网页设计与制作":64,
+                "ActionScript":52
+
+            };
+
+            var data = [];
+            for (var name in keywords) {
+                data.push({
+                    name: name,
+                    value: Math.sqrt(keywords[name])
+                })
+            }
+
+            var maskImage = new Image();
+
+            var option = {
+                series: [ {
+                    type: 'wordCloud',
+                    sizeRange: [30, 50],
+                    rotationRange: [-90, 90],
+                    rotationStep: 45,
+                    gridSize: 2,
+                    shape: 'pentagon',
+                    maskImage: maskImage,
+                    drawOutOfBound: false,
+                    textStyle: {
+                        normal: {
+                            color: function () {
+                                return 'rgb(' + [
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160)
+                                ].join(',') + ')';
+                            }
+                        },
+                        emphasis: {
+                            color: 'red'
+                        }
+                    },
+                    data: data.sort(function (a, b) {
+                        return b.value  - a.value;
+                    })
+                } ]
+            };
+
+            maskImage.onload = function () {
+                option.series[0].maskImage
+                chart.setOption(option);
+            }
+
+            maskImage.src = './circle.png';
+
+            window.onresize = function () {
+                chart.resize();
+            }
+
+        </script>
+        <p align="center">
+            <img border="0" src="images/bd01.gif">
+        </p>
+        <p align="center">
+        <center>
+            <i>
+                <b>
+                    与我联系
+                    <a href="mailto:tangyuqi@shu.edu.cn"><img src="images/emailed.gif"></a>
+                </b>
+            </i>
+        </center>
+        </p>
+    </body>
+</html>

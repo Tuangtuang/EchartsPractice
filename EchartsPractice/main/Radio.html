@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+<body>
+<h1 align="center" style="font-size: 60px;color: #285e8e;font-family: 宋体" >热门出版社评分与价格</h1>
+<style type="text/css">
+a{
+    text-decoration: none;
+    a:link{
+        color: blueviolet;
+    }
+    a:hover{
+        color: yellow;
+    }
+    a:visited{
+        color: black;
+    }
+    a:active{
+        color: whitesmoke;
+    }
+}
+</style>
+<table align="center" style="margin-left: 500px">
+    <tr>
+
+        <td width="250px"><a href="http://www.dangdang.com/" target="_blank" style="font-size: 30px">当当首页</a></td>
+        <td width="250px"><a href="Introduce.html" target="_blank" style="font-size: 30px">关于可视化</a></td>
+        <td width="250px"><a href="index.html" style="font-size: 30px" >  返回主页</a></td>
+    </tr>
+</table>
+<br>
+<br>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="height:600px;width: 1000px;margin-left: 300px" ></div>
+<!-- ECharts单文件引入 -->
+<script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById("main"));
+    var option = {
+        title : {
+            text: '评分价格',
+            subtext: '计算机分类'
+        },
+        tooltip : {
+            trigger: 'item'
+        },
+        legend: {
+            data:['评分','价格']
+        },
+        //右上角工具条
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: false},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ["科学出版社","电子工业出版社","清华大学出版社","机械工业出版社","人民邮电出版社"]
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                axisLabel : {
+                    formatter: '{value} '
+                }
+            }
+        ],
+        series : [
+            {
+                name:'价钱',
+                type:'line',
+                data:[77, 64, 56, 62, 52],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'评分',
+                type:'line',
+                data:[89,92,84,86,88],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最低'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name : '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+    // 为echarts对象加载数据
+    myChart.setOption(option);
+</script>
+
+<br>
+<p align="center">
+    <img border="0" src="images/bd01.gif">
+</p>
+
+<p align="center">
+<center>
+    <i>
+        <b>
+            与我联系
+            <a href="mailto:tangyuqi@shu.edu.cn"><img src="images/emailed.gif"></a>
+        </b>
+    </i>
+</center>
+</p>
+</body>
+</html>
